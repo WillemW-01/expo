@@ -7,7 +7,6 @@ The user must first be validated against the database, and if the user does not 
 - user name (no longer than 30 characters)
 - user email (must check for email format)
 - user password (no longer than 80 characters) (must check strength of password)
-- all other user data described in `user-tables` must be generated as empty
 
 After authentication, the user must be able to sign in to their account and access the app.
 
