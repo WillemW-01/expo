@@ -1,3 +1,5 @@
+import json
+
 from django.http import Http404, HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, render
 
@@ -14,7 +16,15 @@ def is_user(request: HttpRequest, username: str):
 
 
 # Create a new user
-def create_user(request: HttpRequest, username: str, password: str):
-    u = User(username=username, password=password)
+def create_user(request: HttpRequest):
+    data = json.load(request.body)
+    if not (
+        "username" in data.keys() or "email" in data.keys() or "password" in data.keys()
+    ):
+        return Http404("Partial data sent.")
+
+    u = User(username=data["username"], email=data["email"], password=data["password"])
     u.save()
-    return HttpResponse("Success")
+    return HttpResponse(
+        f"Profile for {u.username} was created successfully", status=201
+    )
