@@ -9,14 +9,20 @@ stand-alone repositories for better maintenance.
 
 At the moment, I am planning to test the following technologies for my gym-app:
 
+**Backend**:
+
 - [ ] Django backend
 - [ ] Java Springboot backend
 - [ ] Flask backend
+
+**Database**:
 
 - [ ] SqlLite db
 - [ ] PostGreSQL db
 - [ ] Mongo / other Document-based db
 - [ ] Firebase
+
+**Frontend**:
 
 - [ ] React Native
 - [ ] Normal React frontend
