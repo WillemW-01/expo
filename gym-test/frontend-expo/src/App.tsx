@@ -6,28 +6,28 @@ const App: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = () => {
-    console.log(`sending request with: ${username}, ${password}`);
+  // const login = () => {
+  //   console.log(`sending request with: ${username}, ${password}`);
 
-    fetch("http://localhost:8000/gym/csfr-cookie", {
-      method: "GET",
-      credentials: "include",
-    }).then((response) => console.log(response));
+  //   fetch("http://localhost:8000/gym/csfr-cookie", {
+  //     method: "GET",
+  //     credentials: "include",
+  //   }).then((response) => console.log(response));
 
-    fetch("http://localhost:8000/gym/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application.json",
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
-      body: JSON.stringify({
-        name: username,
-        password: password,
-      }),
-    }).then((response) => console.log(response));
-    console.log(`Success! ${username}: ${password}`);
-  };
+  //   fetch("http://localhost:8000/gym/login", {
+  //     method: "POST",
+  //     credentials: "include",
+  //     headers: {
+  //       "Content-Type": "application.json",
+  //       "X-CSRFToken": Cookies.get("csrftoken"),
+  //     },
+  //     body: JSON.stringify({
+  //       name: username,
+  //       password: password,
+  //     }),
+  //   }).then((response) => console.log(response));
+  //   console.log(`Success! ${username}: ${password}`);
+  // };
 
   return (
     <View style={styles.container}>
@@ -41,7 +41,7 @@ const App: React.FC = () => {
         style={styles.input}
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Submit" onPress={login} />
+      {/* <Button title="Submit" onPress={login} /> */}
     </View>
   );
 };
