@@ -7,11 +7,18 @@ from .models import User
 
 
 # Check if user is already created
-def is_user(request: HttpRequest, username: str):
+def valid_credentials(request: HttpRequest):
     try:
-        found_user = User.objects.get(username=username)
+        # send_data = json.load(open(str(request.body)))
+        send_data = {"username": "Willem", "password": "1234"}
+        print(send_data)
+        users = User.objects.values_list("username", "email")
+        print(users)
+        found_user = User.objects.get(username="Willem")
+        print(found_user)
         return HttpResponse("True")
-    except:
+    except Exception as e:
+        print(e)
         return HttpResponse("False")
 
 

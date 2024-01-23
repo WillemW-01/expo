@@ -56,7 +56,7 @@ class Exercises(models.Model):
     ]
 
     exercise_id = models.AutoField(primary_key=True, verbose_name="id")
-    name = models.TextField()
+    name = models.CharField(max_length=50)
     focus = models.CharField(choices=FOCUSES, max_length=1, default="W")
     exercise_type = models.CharField(choices=TYPES, max_length=3)
     description = models.TextField()
@@ -90,6 +90,7 @@ class WorkoutsExercises(models.Model):
     sets = models.ValueRange(1, MAX_SETS)
     reps = models.CharField(max_length=(3 * MAX_SETS))
     weights = models.CharField(max_length=(4 * MAX_SETS))
+    duration = models.IntegerField(null=True)  # seconds
     notes = models.TextField()
 
     def get_reps(self) -> list[int]:
