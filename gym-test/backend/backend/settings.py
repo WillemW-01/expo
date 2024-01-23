@@ -55,8 +55,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "backend.urls"
 
-CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ["http://localhost:19006"]
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ("http://localhost:5173",)
 
 TEMPLATES = [
     {
