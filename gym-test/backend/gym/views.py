@@ -22,12 +22,12 @@ def valid_credentials(request: HttpRequest):
         # print(users)
         found_user = User.objects.get(username=send_data["username"])
         print(found_user)
-        json_response = JsonResponse({"response": "True"})
+        json_response = JsonResponse({"response": "True", "ok": True})
         print(json_response)
         return json_response
     except Exception as e:
         print(e)
-        return JsonResponse({"response": "False"})
+        return JsonResponse({"response": "False", "ok": False}, status=401)
 
 
 # Create a new user

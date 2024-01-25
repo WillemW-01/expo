@@ -8,7 +8,7 @@ import ErrorPage from "./error-page.jsx";
 import Login from "./routes/Login.jsx";
 import Register from "./routes/Register.jsx";
 
-import { sendLoginData as formAction } from "./routes/Login.jsx";
+import { action as formAction } from "./routes/Login.jsx";
 
 const router = createBrowserRouter([
   {
