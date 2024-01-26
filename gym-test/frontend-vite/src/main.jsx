@@ -8,14 +8,15 @@ import ErrorPage from "./error-page.jsx";
 import Login from "./routes/Login.jsx";
 import Register from "./routes/Register.jsx";
 
-import { action as formAction } from "./routes/Login.jsx";
+import { action as loginAction } from "./routes/Login.jsx";
+import { action as registerAction } from "./routes/Register.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
     errorElement: <ErrorPage />,
-    action: formAction,
+    action: loginAction,
   },
   {
     path: "/home",
@@ -24,6 +25,8 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Register />,
+    errorElement: <ErrorPage />,
+    action: registerAction,
   },
 ]);
 

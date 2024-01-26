@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { Form, Link, redirect } from "react-router-dom";
-import ErrorPage from "../error-page";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
@@ -14,15 +13,17 @@ export async function action({ request, params }) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: userData,
+    body: JSON.stringify(userData),
   });
 
   if (response.ok) {
-    console.log(response);
     console.log("Yay!");
     return redirect("/home");
   } else {
-    return <ErrorPage />;
+    console.log(response);
+    let errorMessage = await response.text();
+    console.log(errorMessage);
+    throw new Error(errorMessage);
   }
 }
 
