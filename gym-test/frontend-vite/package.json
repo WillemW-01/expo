@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "grommet": "^2.34.2",
+    "grommet-icons": "^4.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3"
