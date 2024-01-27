@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./home.css";
 import WorkoutCard from "../components/WorkoutCard";
+import { Grommet } from "grommet";
 // import GrommetTemplate from "../components/GrommetTemplate";
 
 function Home() {
   return (
-    <>
+    <Grommet>
       <h1>Rented Fitness</h1>
       <div className="buttonContainer">
         <button>Start empty workout</button>
@@ -23,7 +24,7 @@ function Home() {
         <WorkoutCard title="Arms" desc="Full body workout day 1" />
       </div>
       {/* <GrommetTemplate /> */}
-    </>
+    </Grommet>
   );
 }
 

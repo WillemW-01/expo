@@ -10,6 +10,7 @@ import Register from "./routes/Register.jsx";
 
 import { action as loginAction } from "./routes/Login.jsx";
 import { action as registerAction } from "./routes/Register.jsx";
+import GrommetTemplate from "./components/GrommetTemplate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,10 +24,14 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "register",
+    path: "/register",
     element: <Register />,
     errorElement: <ErrorPage />,
     action: registerAction,
+  },
+  {
+    path: "/grommet",
+    element: <GrommetTemplate />,
   },
 ]);
 
