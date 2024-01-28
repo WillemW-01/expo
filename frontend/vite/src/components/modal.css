@@ -1,47 +1,5 @@
-.modalContainer {
-  background-color: #242424;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -250px;
-  margin-top: -175px;
-  width: 500px;
-  height: 350px;
-  border: solid white 2px;
-  border-radius: 7px;
-  animation: popUp 0.2s;
-}
-
-.closeModal {
+.modal.closeButton {
   position: absolute;
   top: 10px;
   right: 10px;
-}
-
-h3 {
-  margin: 0;
-}
-
-.modalTitleContainer {
-  margin: 0px 0px 0px 0px;
-}
-
-@keyframes popUp {
-  from {
-    transform: scale(0);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
-
-@keyframes popDown {
-  from {
-    transform: scale(1);
-  }
-
-  to {
-    transform: scale(0);
-  }
 }

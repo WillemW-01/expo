@@ -1,0 +1,197 @@
+{
+  "name": "gym-theme",
+  "rounding": 4,
+  "spacing": 24,
+  "defaultMode": "light",
+  "global": {
+    "colors": {
+      "brand": {
+        "dark": "#ffaa64",
+        "light": "#ef9a54"
+      },
+      "background": {
+        "dark": "#242424",
+        "light": "#EDEDED"
+      },
+      "background-back": {
+        "dark": "#242424",
+        "light": "#EDEDED"
+      },
+      "background-front": {
+        "dark": "#272727",
+        "light": "#FCFCFC"
+      },
+      "background-contrast": {
+        "dark": "#FFFFFF0A",
+        "light": "#11111120"
+      },
+      "text": {
+        "dark": "#EEEEEE",
+        "light": "#333333"
+      },
+      "text-strong": {
+        "dark": "#FFFFFF",
+        "light": "#000000"
+      },
+      "text-weak": {
+        "dark": "#DDDDDD",
+        "light": "#444444"
+      },
+      "text-xweak": {
+        "dark": "#AAAAAA",
+        "light": "#777777"
+      },
+      "border": {
+        "dark": "#444444",
+        "light": "#CCCCCC"
+      },
+      "control": "brand",
+      "active-background": "background-contrast",
+      "active-text": "text-strong",
+      "selected-background": "brand",
+      "selected-text": "text-strong",
+      "status-critical": "#fc692f",
+      "status-warning": "#FFAA64",
+      "status-ok": "#1ace6b",
+      "status-unknown": "#CCCCCC",
+      "status-disabled": "#CCCCCC",
+      "graph-0": "brand",
+      "graph-1": "status-warning",
+      "focus": {
+        "light": "#ef9a54DD",
+        "dark": "#ffaa64"
+      },
+      "brand-darker": {
+        "dark": "#ec7718",
+        "light": "#ec7718"
+      },
+      "brand-darker!": ""
+    },
+    "font": {
+      "family": "Helvetica"
+    },
+    "active": {
+      "background": "active-background",
+      "color": "active-text"
+    },
+    "hover": {
+      "background": "active-background",
+      "color": "active-text"
+    },
+    "selected": {
+      "background": "selected-background",
+      "color": "selected-text"
+    },
+    "control": {
+      "border": {
+        "radius": "4px"
+      }
+    },
+    "drop": {
+      "border": {
+        "radius": "4px"
+      }
+    }
+  },
+  "chart": {},
+  "diagram": {
+    "line": {}
+  },
+  "meter": {},
+  "tip": {
+    "content": {
+      "background": {
+        "color": "background"
+      },
+      "elevation": "none",
+      "round": false
+    }
+  },
+  "formField": {
+    "border": {
+      "color": "border",
+      "error": {
+        "color": {
+          "dark": "white",
+          "light": "status-critical"
+        }
+      },
+      "position": "inner",
+      "side": "bottom"
+    },
+    "content": {
+      "pad": "small"
+    },
+    "disabled": {
+      "background": {
+        "color": "status-disabled",
+        "opacity": "medium"
+      }
+    },
+    "error": {
+      "color": "status-critical",
+      "margin": {
+        "vertical": "xsmall",
+        "horizontal": "small"
+      }
+    },
+    "help": {
+      "color": "dark-3",
+      "margin": {
+        "start": "small"
+      }
+    },
+    "info": {
+      "color": "text-xweak",
+      "margin": {
+        "vertical": "xsmall",
+        "horizontal": "small"
+      }
+    },
+    "label": {
+      "margin": {
+        "vertical": "xsmall",
+        "horizontal": "small"
+      }
+    },
+    "margin": {
+      "bottom": "small"
+    },
+    "survey": {
+      "label": {
+        "margin": {
+          "bottom": "xsmall"
+        },
+        "size": "medium",
+        "weight": 400
+      }
+    },
+    "round": "4px"
+  },
+  "button": {
+    "border": {
+      "radius": "4px"
+    }
+  },
+  "checkBox": {
+    "check": {
+      "radius": "4px"
+    },
+    "toggle": {
+      "radius": "4px"
+    }
+  },
+  "radioButton": {
+    "check": {
+      "radius": "4px"
+    }
+  },
+  "layer": {
+    "background": {
+      "dark": "#242424",
+      "light": "#DBDBDB"
+    }
+  },
+  "email": "willempwannenburg@gmail.com",
+  "date": "2024-01-28T18:58:21.197Z"
+}

@@ -1,37 +1,48 @@
 import "./modal.css";
 import { Layer, Box, Heading, Text, Button, Paragraph, Card } from "grommet";
 import { Deploy } from "grommet-icons";
+import ExerciseShort from "./ExerciseShort";
+import { useEffect, useState } from "react";
 
 export default function Modal(props) {
-  return (
-    // <Layer animate modal position="center" onClickOutside="hide">
-    //   <Box>
-    //     <Heading level="3">{props.title}</Heading>
-    //     {props.lastPerformed ? (
-    //       <Text>Last rented: {props.lastPerformed}</Text>
-    //     ) : (
-    //       <Text />
-    //     )}
-    //   </Box>
-    //   <Button className="closeModal" onClick={() => props.toggleShow(false)}>
-    //     X
-    //   </Button>
-    //   <Paragraph className="descriptionContainer">{props.desc}</Paragraph>
-    // </Layer>
+  const [data, setData] = useState([]);
 
-    <Layer animate modal position="center" margin="none" onClickOutside="hide">
-      <Box align="center" justify="center" pad="medium">
-        <Box align="center" justify="center" gap="none" basis="auto">
-          <Heading level="3" textAlign="center" size="small" margin="none">
+  useEffect(() => {
+    // fetch the data from the server
+    setData([
+      { title: "Bicep curl", sets: 4, reps: 4 },
+      { title: "Bicep curl", sets: 4, reps: 4 },
+      { title: "Bicep curl", sets: 4, reps: 4 },
+      { title: "Bicep curl", sets: 4, reps: 4 },
+    ]);
+  }, []);
+
+  return (
+    <Layer animate modal position="center" round="3">
+      <Box pad="medium" background={{ color: "background-front" }} round="3">
+        <Box gap="none" basis="auto">
+          <Heading
+            level="3"
+            textAlign="center"
+            size="small"
+            margin="none"
+            color="brand-darker"
+          >
             Fully Body 1
           </Heading>
           <Text textAlign="center" size="small">
             Last Rented: 2023/11/12
           </Text>
         </Box>
-        <Button className="closeModal" onClick={() => props.toggleShow(false)}>
-          X
-        </Button>
+        {/* <Button
+          className="modal closeButton"
+          label="X"
+          size="small"
+          color={{ color: "background-front" }}
+          onClick={() => {
+            props.toggleShow(!props.shouldShow);
+          }}
+        /> */}
         <Paragraph margin="small">
           This is a short description of the workout.
         </Paragraph>
@@ -42,70 +53,15 @@ export default function Modal(props) {
           fill="horizontal"
           gap="small"
         >
-          <Card
-            direction="row"
-            fill="horizontal"
-            gap="medium"
-            pad="small"
-            hoverIndicator={false}
-            flex
-          >
-            <Deploy />
-            <Text>Exercise 1</Text>
-            <Text textAlign="end">4x4</Text>
-          </Card>
-          <Card
-            direction="row"
-            fill="horizontal"
-            gap="medium"
-            pad="small"
-            hoverIndicator={false}
-            flex
-          >
-            <Deploy />
-            <Text>Exercise 1</Text>
-            <Text textAlign="end">4x4</Text>
-          </Card>
-          <Card
-            direction="row"
-            fill="horizontal"
-            gap="medium"
-            pad="small"
-            hoverIndicator={false}
-            flex
-          >
-            <Deploy />
-            <Text>Exercise 1</Text>
-            <Text textAlign="end">4x4</Text>
-          </Card>
-          <Card
-            direction="row"
-            fill="horizontal"
-            gap="medium"
-            pad="small"
-            hoverIndicator={false}
-            flex
-          >
-            <Deploy />
-            <Text>Exercise 1</Text>
-            <Text textAlign="end">4x4</Text>
-          </Card>
-          <Card
-            direction="row"
-            fill="horizontal"
-            gap="medium"
-            pad="small"
-            hoverIndicator={false}
-            flex
-          >
-            <Deploy />
-            <Text>Exercise 1</Text>
-            <Text textAlign="end">4x4</Text>
-          </Card>
+          {data.map((item) => (
+            <ExerciseShort
+              title={item.title}
+              sets={item.sets}
+              reps={item.reps}
+            />
+          ))}
         </Box>
       </Box>
     </Layer>
-    // <div className="modalContainer">
-    // </div>
   );
 }

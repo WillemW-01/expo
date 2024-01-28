@@ -1,35 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./workoutCard.css";
 import Modal from "./Modal";
-import { Box, Card, Heading } from "grommet";
+import { Box, Card, Heading, Paragraph, Text } from "grommet";
 
 const WorkoutCard = (props) => {
-  const [showPopUp, setShowPopup] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
   const [cardData, setCardData] = useState({});
+
+  useEffect(() => {
+    console.log(showPopUp);
+  }, [showPopUp]);
 
   return (
     <Card
-      border={{ color: "#dedede" }}
-      pad="small"
-      align="center"
       direction="column"
-      onMouseDown={() => setShowPopup(true)}
+      pad="small"
+      background={{ color: "background-front" }}
+      hoverIndicator
+      onClick={() => {
+        setShowPopUp(!showPopUp);
+      }}
       style={{ cursor: "pointer" }}
     >
-      <Box className="titleContainer" gap="none">
-        <Heading level="3" size="small">
+      <Box>
+        <Heading
+          level="3"
+          size="xsmall"
+          textAlign="center"
+          margin={{ top: "small", bottom: "none" }}
+          color="brand-darker"
+        >
           {props.title}
         </Heading>
-        {props.lastPerformed ? <>Last rented: {props.lastPerformed}</> : <></>}
+        <Text textAlign="center" size="small">
+          Last rented:
+          {props.lastPerformed ? <> {props.lastPerformed}</> : <> Not yet</>}
+        </Text>
       </Box>
-      <Box className="descriptionContainer">{props.desc}</Box>
+      <Box>
+        <Paragraph textAlign="center">{props.desc}</Paragraph>
+      </Box>
       {showPopUp && (
         <Modal
           title={props.title}
           lastPerformed={props.lastPerformed}
           desc={props.desc}
           data={cardData}
-          toggleShow={setShowPopup}
+          toggleShow={setShowPopUp}
         />
       )}
     </Card>

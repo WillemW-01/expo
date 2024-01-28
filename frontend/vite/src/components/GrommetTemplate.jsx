@@ -13,12 +13,13 @@ import {
   Layer,
 } from "grommet";
 import { Deploy } from "grommet-icons";
+import theme from "../grommet-theme.json";
 
 export default () => {
   const [layer, setLayer] = React.useState();
   return (
-    <Grommet>
-      <Page>
+    <Grommet full theme={theme}>
+      <Page fill="vertical">
         <Heading textAlign="center" level="1">
           Rented Fitness
         </Heading>
@@ -30,6 +31,7 @@ export default () => {
             pad="xsmall"
             gap="medium"
           >
+            <Button label="Toggle Theme" hoverIndicator size="medium" />
             <Button label="Start Empty Workout" />
             <Button label="Create New Template" />
           </Box>
@@ -49,6 +51,9 @@ export default () => {
               align="center"
               pad="small"
               overflow="auto"
+              background={{ color: "background-front" }}
+              border={{ color: "active" }}
+              hoverIndicator
               onClick={() => {
                 setLayer(layer ? undefined : 55);
               }}
@@ -65,8 +70,112 @@ export default () => {
                 <Text textAlign="center" size="small">
                   Last Performed: 2023/11/12
                 </Text>
+                <Paragraph>
+                  This is a short description of the workout.
+                </Paragraph>
               </Box>
-              <Paragraph>This is a short description of the workout.</Paragraph>
+              {layer === 55 && (
+                <Layer
+                  animate
+                  modal
+                  position="center"
+                  margin="none"
+                  onClickOutside="hide"
+                >
+                  <Box align="center" justify="center" pad="medium">
+                    <Box
+                      align="center"
+                      justify="center"
+                      gap="none"
+                      basis="auto"
+                    >
+                      <Heading
+                        level="3"
+                        textAlign="center"
+                        size="small"
+                        margin="none"
+                      >
+                        Fully Body 1
+                      </Heading>
+                      <Text textAlign="center" size="small">
+                        Last Performed: 2023/11/12
+                      </Text>
+                    </Box>
+                    <Paragraph margin="small">
+                      This is a short description of the workout.
+                    </Paragraph>
+                    <Box
+                      align="center"
+                      justify="center"
+                      pad="xsmall"
+                      fill="horizontal"
+                      gap="small"
+                      overflow="scroll"
+                    >
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                    </Box>
+                  </Box>
+                </Layer>
+              )}
             </Card>
             <Card
               direction="column"
@@ -74,6 +183,12 @@ export default () => {
               align="center"
               pad="small"
               overflow="auto"
+              background={{ color: "background-front" }}
+              border={{ color: "active" }}
+              hoverIndicator
+              onClick={() => {
+                setLayer(layer ? undefined : 104);
+              }}
             >
               <Box align="center" justify="center" gap="none" basis="auto">
                 <Heading
@@ -87,8 +202,112 @@ export default () => {
                 <Text textAlign="center" size="small">
                   Last Performed: 2023/11/12
                 </Text>
+                <Paragraph>
+                  This is a short description of the workout.
+                </Paragraph>
               </Box>
-              <Paragraph>This is a short description of the workout.</Paragraph>
+              {layer === 104 && (
+                <Layer
+                  animate
+                  modal
+                  position="center"
+                  margin="none"
+                  onClickOutside="hide"
+                >
+                  <Box align="center" justify="center" pad="medium">
+                    <Box
+                      align="center"
+                      justify="center"
+                      gap="none"
+                      basis="auto"
+                    >
+                      <Heading
+                        level="3"
+                        textAlign="center"
+                        size="small"
+                        margin="none"
+                      >
+                        Fully Body 1
+                      </Heading>
+                      <Text textAlign="center" size="small">
+                        Last Performed: 2023/11/12
+                      </Text>
+                    </Box>
+                    <Paragraph margin="small">
+                      This is a short description of the workout.
+                    </Paragraph>
+                    <Box
+                      align="center"
+                      justify="center"
+                      pad="xsmall"
+                      fill="horizontal"
+                      gap="small"
+                      overflow="scroll"
+                    >
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                      <Card
+                        direction="row"
+                        fill="horizontal"
+                        gap="medium"
+                        pad="small"
+                        hoverIndicator={false}
+                        flex
+                      >
+                        <Deploy />
+                        <Text>Exercise 1</Text>
+                        <Text textAlign="end">4x4</Text>
+                      </Card>
+                    </Box>
+                  </Box>
+                </Layer>
+              )}
             </Card>
             <Card
               direction="column"
@@ -96,6 +315,12 @@ export default () => {
               align="center"
               pad="small"
               overflow="auto"
+              background={{ color: "background-front" }}
+              border={{ color: "active" }}
+              hoverIndicator
+              onClick={() => {
+                setLayer(layer ? undefined : 136);
+              }}
             >
               <Box align="center" justify="center" gap="none" basis="auto">
                 <Heading
@@ -113,7 +338,7 @@ export default () => {
                   This is a short description of the workout.
                 </Paragraph>
               </Box>
-              {layer === 55 && (
+              {layer === 136 && (
                 <Layer
                   animate
                   modal
