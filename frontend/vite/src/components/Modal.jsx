@@ -9,6 +9,7 @@ export default function Modal(props) {
 
   useEffect(() => {
     // fetch the data from the server
+    function fetchDat() {}
     setData([
       { title: "Bicep curl", sets: 4, reps: 4 },
       { title: "Bicep curl", sets: 4, reps: 4 },
@@ -18,7 +19,7 @@ export default function Modal(props) {
   }, []);
 
   return (
-    <Layer animate modal position="center" round="3">
+    <Layer animate position="center" round="3">
       <Box pad="medium" background={{ color: "background-front" }} round="3">
         <Box gap="none" basis="auto">
           <Heading
@@ -34,15 +35,15 @@ export default function Modal(props) {
             Last Rented: 2023/11/12
           </Text>
         </Box>
-        {/* <Button
+        <Button
           className="modal closeButton"
           label="X"
           size="small"
           color={{ color: "background-front" }}
-          onClick={() => {
-            props.toggleShow(!props.shouldShow);
+          onMouseDown={() => {
+            props.toggleShow(false);
           }}
-        /> */}
+        />
         <Paragraph margin="small">
           This is a short description of the workout.
         </Paragraph>
@@ -53,8 +54,9 @@ export default function Modal(props) {
           fill="horizontal"
           gap="small"
         >
-          {data.map((item) => (
+          {data.map((item, index) => (
             <ExerciseShort
+              key={index}
               title={item.title}
               sets={item.sets}
               reps={item.reps}

@@ -4,9 +4,11 @@ import { Heading, Page, PageContent, Box, Button, Grid } from "grommet";
 import { useState } from "react";
 import { Grommet } from "grommet";
 import theme from "../grommet-theme.json";
+import NewTemplate from "../components/NewTemplate";
 
 function Home() {
   const [darkMode, setDarkMode] = useState(false);
+  const [showCreateTemplate, setShowCreateTemplate] = useState(false);
 
   return (
     <Grommet full theme={theme} themeMode={darkMode ? "dark" : "light"}>
@@ -20,7 +22,11 @@ function Home() {
               onClick={() => setDarkMode(!darkMode)}
             ></Button>
             <Button hoverIndicator label="Start empty workout" />
-            <Button hoverIndicator label="Create new template" />
+            <Button
+              hoverIndicator
+              label="Create new template"
+              onMouseUp={() => setShowCreateTemplate(true)}
+            />
           </Box>
           <Heading level="2" textAlign="center">
             Template workouts
@@ -41,6 +47,9 @@ function Home() {
             />
             <WorkoutCard title="Arms" desc="One-word description" />
           </Grid>
+          {showCreateTemplate && (
+            <NewTemplate toggleShow={setShowCreateTemplate} />
+          )}
         </PageContent>
       </Page>
     </Grommet>

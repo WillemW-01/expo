@@ -7,9 +7,12 @@ const WorkoutCard = (props) => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [cardData, setCardData] = useState({});
 
+  // load the data only once, when the component is rendered
   useEffect(() => {
-    console.log(showPopUp);
-  }, [showPopUp]);
+    function fetchData() {}
+
+    // setCardData()
+  }, []);
 
   return (
     <Card
@@ -17,8 +20,8 @@ const WorkoutCard = (props) => {
       pad="small"
       background={{ color: "background-front" }}
       hoverIndicator
-      onClick={() => {
-        setShowPopUp(!showPopUp);
+      onMouseUp={() => {
+        setShowPopUp(true);
       }}
       style={{ cursor: "pointer" }}
     >
