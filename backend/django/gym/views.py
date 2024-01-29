@@ -4,7 +4,11 @@ from django.db.utils import IntegrityError
 from django.http import Http404, HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import User
+from .models import Exercises, Templates, User
+
+
+def load_from_body(request: HttpRequest) -> dict:
+    return json.loads(request.body.decode("utf-8"))
 
 
 @csrf_exempt
@@ -53,3 +57,29 @@ def create_user(request: HttpRequest):
             "User already exists.",
             status=401,
         )
+
+
+@csrf_exempt
+def create_new_template(request: HttpRequest):
+    print("Got request!")
+    data = load_from_body(request)
+    print(data)
+
+    try:
+        template = Templates(name=data["title"], description=data["description"])
+        template.save()
+
+        exercises = []
+        # link exercises to the new template
+        for item in data["selection"]:
+            print(f"Finding id for {item}")
+            temp_exercise = Exercises.objects.get(name=item)
+            exercises.append(temp_exercise)
+
+        template.exercises.add(*exercises)
+        template.save()
+        print(f"Saved new template with id {template.template_id}")
+
+        return HttpResponse("Return to you", status=201)
+    except Exception as e:
+        return HttpResponse(e, status=401)

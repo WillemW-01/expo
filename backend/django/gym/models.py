@@ -59,10 +59,10 @@ class Exercises(models.Model):
     name = models.CharField(max_length=50)
     focus = models.CharField(choices=FOCUSES, max_length=1, default="W")
     exercise_type = models.CharField(choices=TYPES, max_length=3)
-    description = models.TextField()
-    cues = models.TextField()
-    tips = models.TextField()
-    primary = models.CharField(max_length=35)
+    description = models.TextField(null=True)
+    cues = models.TextField(null=True)
+    tips = models.TextField(null=True)
+    primary = models.CharField(max_length=35, null=True)
     secondary = models.CharField(max_length=35, null=True)
     rpe = models.ValueRange(0, 10)
     img = models.ImageField(null=True)
@@ -72,7 +72,8 @@ class Templates(models.Model):
     template_id = models.AutoField(primary_key=True, verbose_name="id")
     name = models.CharField(max_length=30)
     description = models.TextField()
-    lastPerformed = models.DateTimeField()
+    lastPerformed = models.DateTimeField(null=True)
+    exercises = models.ManyToManyField(Exercises)
 
 
 class Workouts(models.Model):
@@ -85,8 +86,8 @@ class Workouts(models.Model):
 
 
 class WorkoutsExercises(models.Model):
-    workout_id = models.ForeignKey(Workouts, on_delete=models.CASCADE)
-    exercise_id = models.ForeignKey(Exercises, on_delete=models.CASCADE)
+    workout_id = models.ForeignKey(to="Workouts", on_delete=models.CASCADE)
+    exercise_id = models.ForeignKey(to="Exercises", on_delete=models.CASCADE)
     sets = models.ValueRange(1, MAX_SETS)
     reps = models.CharField(max_length=(3 * MAX_SETS))
     weights = models.CharField(max_length=(4 * MAX_SETS))
@@ -100,8 +101,8 @@ class WorkoutsExercises(models.Model):
         return [int(a) for a in self.weights.split(" ")]
 
 
-class TemplateExercises(models.Model):
-    template_id = models.ForeignKey(Templates, on_delete=models.CASCADE)
-    exercise_id = models.ForeignKey(Exercises, on_delete=models.CASCADE)
-    sets = models.ValueRange(0, MAX_SETS)
-    superset_id = models.IntegerField()
+# class TemplateExercises(models.Model):
+#     template_id = models.ForeignKey(Templates, on_delete=models.CASCADE)
+#     exercise_id = models.ForeignKey(Exercises, on_delete=models.CASCADE)
+#     sets = models.ValueRange(0, MAX_SETS)
+#     superset_id = models.IntegerField(null=True)
