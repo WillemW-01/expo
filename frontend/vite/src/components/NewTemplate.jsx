@@ -1,7 +1,6 @@
 import {
   Button,
   Form,
-  FormField,
   Layer,
   TextInput,
   Heading,
@@ -14,9 +13,7 @@ export default function NewTemplate(props) {
   const [data, setData] = useState({});
 
   function saveTemplate() {
-    // POST data to server
-    console.log("Sending data to server:");
-    console.log(data);
+    console.log(`Sending data to server: ${data}`);
 
     fetch("http://127.0.0.1:5173/gym/new-template", {
       method: "POST",
@@ -25,7 +22,12 @@ export default function NewTemplate(props) {
       },
       body: JSON.stringify(data),
     }).then((response) => {
-      console.log(response);
+      console.log(`Got response: ${response}`);
+      if (response.ok) {
+        console.log("Yay!");
+      } else {
+        console.log("Aww...");
+      }
     });
   }
 
@@ -56,6 +58,7 @@ export default function NewTemplate(props) {
             name="selection"
             showSelectedInline
             options={["Bicep Curl", "Leg Curl"]}
+            placeholder="Select exercises"
           />
           <Button type="submit" label="Save" />
           <Button

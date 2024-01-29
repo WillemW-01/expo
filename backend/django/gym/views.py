@@ -82,4 +82,5 @@ def create_new_template(request: HttpRequest):
 
         return HttpResponse("Return to you", status=201)
     except Exception as e:
+        print(e)
         return HttpResponse(e, status=401)
