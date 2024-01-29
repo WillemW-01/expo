@@ -13,9 +13,20 @@ import { useState } from "react";
 export default function NewTemplate(props) {
   const [data, setData] = useState({});
 
-  function saveTemplate(inputData) {
+  function saveTemplate() {
     // POST data to server
+    console.log("Sending data to server:");
     console.log(data);
+
+    fetch("http://127.0.0.1:5173/gym/new-template", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      console.log(response);
+    });
   }
 
   return (
@@ -24,13 +35,17 @@ export default function NewTemplate(props) {
         align="center"
         value={data}
         onSubmit={() => {
-          saveTemplate(data);
+          saveTemplate();
         }}
         onChange={(newData) => setData(newData)}
       >
         <Box justify="start" direction="column" gap="small" pad="medium">
           <Heading level="3">
-            <TextInput name="title" placeholder="Super Arms Day" />
+            <TextInput
+              name="title"
+              placeholder="Super Arms Day"
+              value={data.title}
+            />
           </Heading>
           <TextArea
             name="description"
@@ -40,7 +55,7 @@ export default function NewTemplate(props) {
           <SelectMultiple
             name="selection"
             showSelectedInline
-            options={["Bicep curl", "Leg Curl"]}
+            options={["Bicep Curl", "Leg Curl"]}
           />
           <Button type="submit" label="Save" />
           <Button
