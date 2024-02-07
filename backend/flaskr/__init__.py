@@ -20,6 +20,10 @@ def request_data_valid(request: dict[str], keys):
         return False
 
 
+def parse_data(request):
+    return json.loads(request.data.decode("utf-8"))
+
+
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
@@ -62,7 +66,7 @@ def create_app(test_config=None):
     @app.route("/gym/register", methods=["GET", "POST"])
     def register():
         db = get_db()
-        data = json.loads(request.data.decode("utf-8"))
+        data = parse_data(request)
         if request_data_valid(data, ["username", "email", "password"]):
             try:
                 db.execute(
@@ -78,6 +82,50 @@ def create_app(test_config=None):
         else:
             db.close()
             return make_response("Data invalid.", 400)
+
+        db.close()
+        return make_response("Success!", 200)
+
+    @app.route("/gym/new-template", methods=["POST"])
+    def create_new_template():
+        print("got to here")
+        db = get_db()
+        data = parse_data(request)
+        if request_data_valid(data, ["title", "description"]):
+            try:
+                print(data)
+                db.execute(
+                    "INSERT INTO gym_templates (name, description) values (?, ?)",
+                    (data["title"], data["description"]),
+                )
+                db.commit()
+
+                template = db.execute(
+                    "SELECT * from gym_templates ORDER BY template_id DESC LIMIT 1"
+                ).fetchone()
+                t_id = template["template_id"]
+
+                # Fetch the exercises and adds them to the linking table
+                for exercise in data["selection"]:
+                    print("looking for ", exercise)
+                    ex = db.execute(
+                        "SELECT * from gym_exercises WHERE name = ? ", (exercise,)
+                    ).fetchone()
+                    print(ex)
+                    ex_id = ex["exercise_id"]
+                    print(ex_id)
+
+                    db.execute(
+                        "INSERT INTO gym_templates_exercises (templates_id, exercises_id) VALUES (?, ?) ",
+                        (t_id, ex_id),
+                    )
+                    db.commit()
+
+                db.close()
+            except Exception as e:
+                print(e)
+                db.close()
+                return make_response("Template already exists already taken.", 409)
 
         db.close()
         return make_response("Success!", 200)

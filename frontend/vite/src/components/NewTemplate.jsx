@@ -13,7 +13,8 @@ export default function NewTemplate(props) {
   const [data, setData] = useState({});
 
   function saveTemplate() {
-    console.log(`Sending data to server: ${data}`);
+    console.log("Sending data to server:");
+    console.log(data);
 
     fetch("http://127.0.0.1:5173/gym/new-template", {
       method: "POST",
