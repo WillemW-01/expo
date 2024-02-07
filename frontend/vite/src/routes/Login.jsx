@@ -1,6 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { Form, Link, redirect } from "react-router-dom";
+import {
+  Box,
+  Heading,
+  FormField,
+  TextInput,
+  Button,
+  Grommet,
+  RadioButtonGroup,
+} from "grommet";
+import theme from "../grommet-theme.json";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
@@ -28,24 +38,40 @@ export async function action({ request, params }) {
 }
 
 const Login = () => {
+  const [darkMode, setDarkMode] = useState("light");
+
   return (
-    <>
-      <h1>Login</h1>
-      <Form method="POST">
-        <fieldset>
-          <legend>Username</legend>
-          <input type="text" name="username" />
-        </fieldset>
-        <fieldset>
-          <legend>Password</legend>
-          <input type="password" name="password" />
-        </fieldset>
-        <button type="submit">Login</button>
-        <Link to="/register">
-          <button type="button">Create new profile</button>
-        </Link>
-      </Form>
-    </>
+    <Grommet
+      full
+      theme={theme}
+      themeMode={darkMode === "dark" ? "dark" : "light"}
+    >
+      <Box direction="column" align="center" gap="small">
+        <Heading level="1">Login</Heading>
+        <Form method="POST">
+          <FormField label="Username" align="center">
+            <TextInput type="text" name="username" />
+          </FormField>
+          <FormField label="Password" align="center">
+            <TextInput type="password" name="password" />
+          </FormField>
+          <Box gap="small" align="center" direction="row">
+            <Button type="submit" label="Login" />
+            <Link to="/register">
+              <Button type="button" label="Create new profile" />
+            </Link>
+          </Box>
+        </Form>
+        <RadioButtonGroup
+          name="theme-toggle"
+          options={["light", "dark"]}
+          value={darkMode}
+          defaultValue="light"
+          onChange={(event) => setDarkMode(event.target.value)}
+          direction="row"
+        />
+      </Box>
+    </Grommet>
   );
 };
 
