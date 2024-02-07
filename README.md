@@ -11,13 +11,14 @@ At the moment, I am planning to test the following technologies for my gym-app:
 
 **Backend**:
 
-- [ ] Django backend
+- [x] Django backend
 - [ ] Java Springboot backend
-- [ ] Flask backend
+- [x] Flask backend
+- [ ] Node backend
 
 **Database**:
 
-- [ ] SqlLite db
+- [x] SqlLite db
 - [ ] PostGreSQL db
 - [ ] Mongo / other Document-based db
 - [ ] Firebase
@@ -25,7 +26,9 @@ At the moment, I am planning to test the following technologies for my gym-app:
 **Frontend**:
 
 - [ ] React Native
-- [ ] Normal React frontend
+- [x] React
+- [ ] Svelte
+- [ ] Vue
 - [ ] Angular (big maybe)
 
 ## Features
