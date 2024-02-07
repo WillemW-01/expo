@@ -99,7 +99,9 @@ def get_templates(request: HttpRequest):
         temp_item["lastPerformed"] = template.lastPerformed
         exercises = template.exercises.all()
         temp_item["exercises"] = []
+        print(template.name)
         for ex in exercises:
             temp_item["exercises"].append({"id": ex.exercise_id, "name": ex.name})
+            print(ex.name)
         data.append(temp_item)
     return HttpResponse(json.dumps(data), content_type="application/json")

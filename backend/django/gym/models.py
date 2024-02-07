@@ -56,15 +56,14 @@ class Exercises(models.Model):
     ]
 
     exercise_id = models.AutoField(primary_key=True, verbose_name="id")
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     focus = models.CharField(choices=FOCUSES, max_length=1, default="W")
     exercise_type = models.CharField(choices=TYPES, max_length=3)
     description = models.TextField(null=True)
     cues = models.TextField(null=True)
     tips = models.TextField(null=True)
-    primary = models.CharField(max_length=35, null=True)
-    secondary = models.CharField(max_length=35, null=True)
-    rpe = models.ValueRange(0, 10)
+    primary_mover = models.CharField(max_length=35, null=True)
+    secondary_mover = models.CharField(max_length=35, null=True)
     img = models.ImageField(null=True)
 
 
@@ -92,6 +91,7 @@ class WorkoutsExercises(models.Model):
     reps = models.CharField(max_length=(3 * MAX_SETS))
     weights = models.CharField(max_length=(4 * MAX_SETS))
     duration = models.IntegerField(null=True)  # seconds
+    rpe = models.ValueRange(0, 10)
     notes = models.TextField()
 
     def get_reps(self) -> list[int]:
@@ -99,10 +99,3 @@ class WorkoutsExercises(models.Model):
 
     def get_weights(self) -> list[int]:
         return [int(a) for a in self.weights.split(" ")]
-
-
-# class TemplateExercises(models.Model):
-#     template_id = models.ForeignKey(Templates, on_delete=models.CASCADE)
-#     exercise_id = models.ForeignKey(Exercises, on_delete=models.CASCADE)
-#     sets = models.ValueRange(0, MAX_SETS)
-#     superset_id = models.IntegerField(null=True)
