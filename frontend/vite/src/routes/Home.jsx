@@ -9,6 +9,7 @@ import {
   Grid,
   DropButton,
   Collapsible,
+  Paragraph,
 } from "grommet";
 import { useEffect, useState } from "react";
 import { Grommet } from "grommet";
@@ -62,18 +63,35 @@ function Home() {
             />
           </Heading>
           <Collapsible open={showTemplates}>
-            <Grid columns={{ size: ["1/4", "1/3"] }} gap="medium" width="large">
-              {templateData.map((value, index) => {
-                return (
-                  <WorkoutCard
-                    title={value["name"]}
-                    desc={value["description"]}
-                    id={value["template_id"]}
-                    key={index}
-                  />
-                );
-              })}
-            </Grid>
+            {templateData.length != 0 ? (
+              <Grid
+                columns={{ size: ["1/4", "1/3"] }}
+                gap="medium"
+                width="large"
+              >
+                {templateData.map((value, index) => {
+                  return (
+                    <div key={index}>
+                      <WorkoutCard
+                        title={value["name"]}
+                        desc={value["description"]}
+                        id={value["template_id"]}
+                        exercises={value["exercises"]}
+                      />
+                      <ul>
+                        {value["exercises"].map((item, index) => {
+                          return <li key={index}>{item.name}</li>;
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </Grid>
+            ) : (
+              <Paragraph>
+                No templates yet! Click the button above to create your first.
+              </Paragraph>
+            )}
           </Collapsible>
           {showCreateTemplate && (
             <NewTemplate
