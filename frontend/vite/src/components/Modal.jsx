@@ -5,34 +5,26 @@ import ExerciseShort from "./ExerciseShort";
 import { useEffect, useState } from "react";
 
 export default function Modal(props) {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    // fetch the data from the server
-    function fetchDat() {}
-    setData([
-      { title: "Bicep curl", sets: 4, reps: 4 },
-      { title: "Bicep curl", sets: 4, reps: 4 },
-      { title: "Bicep curl", sets: 4, reps: 4 },
-      { title: "Bicep curl", sets: 4, reps: 4 },
-    ]);
-  }, []);
-
   return (
-    <Layer animate position="center" round="3">
-      <Box pad="medium" background={{ color: "background-front" }} round="3">
-        <Box gap="none" basis="auto">
+    <Layer animate position="center" style={{ borderRadius: "10px" }}>
+      <Box
+        pad="medium"
+        background={{ color: "background-front" }}
+        width={{ max: "large", min: "450px" }}
+        round="10px"
+      >
+        <Box gap="none" basis="auto" align="center">
           <Heading
-            level="3"
+            level="2"
             textAlign="center"
-            size="small"
             margin="none"
             color="brand-darker"
           >
-            Fully Body 1
+            {props.title}
           </Heading>
           <Text textAlign="center" size="small">
-            Last Rented: 2023/11/12
+            Last Rented:{" "}
+            {props.lastPerformed ? props.lastPerformed : "Not yet."}
           </Text>
         </Box>
         <Button
@@ -44,8 +36,8 @@ export default function Modal(props) {
             props.toggleShow(false);
           }}
         />
-        <Paragraph margin="small">
-          This is a short description of the workout.
+        <Paragraph margin="small" textAlign="center" fill="horizontal">
+          {props.desc}
         </Paragraph>
         <Box
           align="center"
@@ -54,13 +46,8 @@ export default function Modal(props) {
           fill="horizontal"
           gap="small"
         >
-          {data.map((item, index) => (
-            <ExerciseShort
-              key={index}
-              title={item.title}
-              sets={item.sets}
-              reps={item.reps}
-            />
+          {props.exercises.map((item, index) => (
+            <ExerciseShort key={index} title={item.name} sets={4} reps={4} />
           ))}
         </Box>
       </Box>

@@ -48,7 +48,7 @@ const WorkoutCard = (props) => {
           title={props.title}
           lastPerformed={props.lastPerformed}
           desc={props.desc}
-          data={cardData}
+          exercises={props.exercises}
           toggleShow={setShowPopUp}
         />
       )}

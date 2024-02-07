@@ -11,6 +11,7 @@ import {
   Collapsible,
   Paragraph,
 } from "grommet";
+import { FormNext, FormDown } from "grommet-icons";
 import { useEffect, useState } from "react";
 import { Grommet } from "grommet";
 import theme from "../grommet-theme.json";
@@ -57,10 +58,11 @@ function Home() {
           </Box>
           <Heading level="2" textAlign="center">
             <Button
-              label={showTemplates ? "Templates" : "Templates >"}
+              label="Templates"
               plain
               onClick={() => setShowTemplates((prev) => !prev)}
             />
+            {showTemplates ? <FormDown /> : <FormNext />}
           </Heading>
           <Collapsible open={showTemplates}>
             {templateData.length != 0 ? (

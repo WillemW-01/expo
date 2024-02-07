@@ -1,18 +1,18 @@
-import { Card, Text } from "grommet";
-import { Deploy } from "grommet-icons";
-
+import { Card, Image, Text, Box } from "grommet";
+import { FormNext } from "grommet-icons";
+import Dumbbell from "../assets/dumbbell.png";
 export default function ExerciseShort(props) {
   return (
     <Card
       direction="row"
       fill="horizontal"
-      gap="medium"
+      gap="none"
       pad="small"
       hoverIndicator={true}
     >
-      <Deploy style={{ flex: 1 }} />
-      <Text style={{ flex: 4 }}>{props.title}</Text>
-      <Text textAlign="end" style={{ flex: 1 }}>
+      <FormNext style={{ flex: 1 }} />
+      <Text style={{ flex: 10 }}>{props.title}</Text>
+      <Text textAlign="end" style={{ flex: 2 }}>
         {props.sets}x{props.reps}
       </Text>
     </Card>
