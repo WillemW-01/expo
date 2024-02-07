@@ -6,8 +6,8 @@
   "global": {
     "colors": {
       "brand": {
-        "dark": "#ffaa64",
-        "light": "#ef9a54"
+        "dark": "#ec7718",
+        "light": "#ec7718"
       },
       "background": {
         "dark": "#242424",

@@ -9,6 +9,7 @@ export default function ExerciseShort(props) {
       gap="none"
       pad="small"
       hoverIndicator={true}
+      style={{ boxShadow: "rgba(0, 0, 0, 0.68) 0px 2px 4px" }}
     >
       <FormNext style={{ flex: 1 }} />
       <Text style={{ flex: 10 }}>{props.title}</Text>

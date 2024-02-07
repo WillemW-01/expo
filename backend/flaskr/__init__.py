@@ -135,8 +135,27 @@ def create_app(test_config=None):
         db = get_db()
         templates = db.execute("SELECT * FROM gym_templates").fetchall()
         templates = [dict(row) for row in templates]
+        for template in templates:
+            print(f"Getting exercises for {template['name']}")
+            exercises = db.execute(
+                "SELECT DISTINCT e.name, e.exercise_id FROM gym_exercises e JOIN gym_templates_exercises te ON e.exercise_id = te.exercises_id JOIN gym_templates t ON te.templates_id = ?",
+                (template["template_id"],),
+            )
+            exercises = [dict(row) for row in exercises]
+            template["exercises"] = [
+                {"name": ex["name"], "id": ex["exercise_id"]} for ex in exercises
+            ]
         templates = json.dumps(templates)
         print("Sending data")
         return jsonify(templates)
+
+    @app.route("/gym/get-exercises")
+    def get_exercises():
+        print("Got here")
+        db = get_db()
+        exercises = db.execute("SELECT name FROM gym_exercises").fetchall()
+        exercises = [row["name"] for row in exercises]
+        exercises = json.dumps(exercises)
+        return jsonify(exercises)
 
     return app

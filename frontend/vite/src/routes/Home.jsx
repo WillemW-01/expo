@@ -27,9 +27,13 @@ function Home() {
     let response = await fetch("http://127.0.0.1:5173/gym/get-templates");
     console.log(response);
     let data = await response.json();
+    console.log(typeof data);
     if (typeof data === "string") {
+      console.log("Parsing...");
       data = JSON.parse(data);
     }
+    console.log("Got templates from server:");
+    console.log(data);
     setTemplateData(data);
   }
 
@@ -79,12 +83,13 @@ function Home() {
                         desc={value["description"]}
                         id={value["template_id"]}
                         exercises={value["exercises"]}
+                        theme={darkMode}
                       />
-                      <ul>
+                      {/* <ul>
                         {value["exercises"].map((item, index) => {
                           return <li key={index}>{item.name}</li>;
                         })}
-                      </ul>
+                      </ul> */}
                     </div>
                   );
                 })}

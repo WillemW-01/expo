@@ -1,31 +1,37 @@
 import { useEffect, useState } from "react";
 import "./workoutCard.css";
 import Modal from "./Modal";
-import { Box, Card, Heading, Paragraph, Text } from "grommet";
+import {
+  Box,
+  Card,
+  CardBody,
+  Grommet,
+  Heading,
+  Paragraph,
+  Text,
+  defaultProps,
+} from "grommet";
 
 const WorkoutCard = (props) => {
   const [showPopUp, setShowPopUp] = useState(false);
-  const [cardData, setCardData] = useState({});
-
-  // load the data only once, when the component is rendered
-  useEffect(() => {
-    function fetchData() {}
-
-    // setCardData()
-  }, []);
 
   return (
     <Card
       direction="column"
       pad="small"
-      background={{ color: "background-front" }}
+      background={{ color: "background" }}
+      border={{ color: "background-contrast", style: "solid" }}
       hoverIndicator
       onMouseUp={() => {
         setShowPopUp(true);
       }}
-      style={{ cursor: "pointer" }}
+      style={{
+        cursor: "pointer",
+        boxShadow: props.theme ? "#dedede33 2px 2px" : "#00000055 2px 2px",
+      }}
+      round="10px"
     >
-      <Box>
+      <CardBody>
         <Heading
           level="3"
           size="xsmall"
@@ -39,7 +45,7 @@ const WorkoutCard = (props) => {
           Last rented:
           {props.lastPerformed ? <> {props.lastPerformed}</> : <> Not yet</>}
         </Text>
-      </Box>
+      </CardBody>
       <Box>
         <Paragraph textAlign="center">{props.desc}</Paragraph>
       </Box>

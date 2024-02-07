@@ -8,9 +8,11 @@ import {
   Box,
   TextArea,
 } from "grommet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 export default function NewTemplate(props) {
   const [data, setData] = useState({});
+  const [options, setOptions] = useState([]);
 
   function saveTemplate() {
     console.log("Sending data to server:");
@@ -31,6 +33,16 @@ export default function NewTemplate(props) {
       }
     });
   }
+
+  async function fetchExercises() {
+    let response = await fetch("http://127.0.0.1:5173/gym/get-exercises");
+    let responseData = await response.json();
+    setOptions(JSON.parse(responseData));
+  }
+
+  useEffect(() => {
+    fetchExercises();
+  }, []);
 
   return (
     <Layer animate modal position="center" background={"background-front"}>
@@ -58,7 +70,7 @@ export default function NewTemplate(props) {
           <SelectMultiple
             name="selection"
             showSelectedInline
-            options={["Bicep Curl", "Leg Curl"]}
+            options={options}
             placeholder="Select exercises"
           />
           <Button type="submit" label="Save" />
