@@ -25,9 +25,9 @@ export default function NewTemplate(props) {
     }).then((response) => {
       console.log(`Got response: ${response}`);
       if (response.ok) {
-        console.log("Yay!");
+        props.fetchFunction();
       } else {
-        console.log("Aww...");
+        console.log("There was an error...");
       }
     });
   }

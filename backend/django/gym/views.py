@@ -97,9 +97,9 @@ def get_templates(request: HttpRequest):
         temp_item["name"] = template.name
         temp_item["description"] = template.description
         temp_item["lastPerformed"] = template.lastPerformed
-        exercises = template.exercises.fields
-        # TODO: get the exercises in the right format
-        temp_item["exercises"] = serializers.serialize("json", exercises)
+        exercises = template.exercises.all()
+        temp_item["exercises"] = []
+        for ex in exercises:
+            temp_item["exercises"].append({"id": ex.exercise_id, "name": ex.name})
         data.append(temp_item)
-
-    print(data)
+    return HttpResponse(json.dumps(data), content_type="application/json")

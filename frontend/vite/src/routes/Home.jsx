@@ -23,8 +23,11 @@ function Home() {
 
   async function fetchTemplates() {
     let response = await fetch("http://127.0.0.1:5173/gym/get-templates");
+    console.log(response);
     let data = await response.json();
-    data = JSON.parse(data);
+    if (typeof data === "string") {
+      data = JSON.parse(data);
+    }
     setTemplateData(data);
   }
 
@@ -73,7 +76,10 @@ function Home() {
             </Grid>
           </Collapsible>
           {showCreateTemplate && (
-            <NewTemplate toggleShow={setShowCreateTemplate} />
+            <NewTemplate
+              toggleShow={setShowCreateTemplate}
+              fetchFunction={fetchTemplates}
+            />
           )}
         </PageContent>
       </Page>
