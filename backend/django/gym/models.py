@@ -25,8 +25,8 @@ MAX_SETS = 15
 # Create your models here.
 class User(models.Model):
     user_id = models.AutoField(primary_key=True, verbose_name="id")
-    email = models.EmailField(default="")
-    username = models.CharField(max_length=30)
+    email = models.EmailField(default="", unique=True)
+    username = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=80)
     height = models.FloatField(null=True)
 

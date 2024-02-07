@@ -1,5 +1,6 @@
 import json
 
+from django.core import serializers
 from django.db.utils import IntegrityError
 from django.http import Http404, HttpRequest, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -84,3 +85,21 @@ def create_new_template(request: HttpRequest):
     except Exception as e:
         print(e)
         return HttpResponse(e, status=401)
+
+
+@csrf_exempt
+def get_templates(request: HttpRequest):
+    data = []
+
+    templates = Templates.objects.all()
+    for template in templates:
+        temp_item = {}
+        temp_item["name"] = template.name
+        temp_item["description"] = template.description
+        temp_item["lastPerformed"] = template.lastPerformed
+        exercises = template.exercises.fields
+        # TODO: get the exercises in the right format
+        temp_item["exercises"] = serializers.serialize("json", exercises)
+        data.append(temp_item)
+
+    print(data)
