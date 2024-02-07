@@ -1,7 +1,7 @@
 import json
 import os
 
-from flask import Flask, abort, make_response, request
+from flask import Flask, abort, jsonify, make_response, request
 from flask_cors import CORS
 from flaskr.db import get_db
 
@@ -91,12 +91,12 @@ def create_app(test_config=None):
         print("got to here")
         db = get_db()
         data = parse_data(request)
-        if request_data_valid(data, ["title", "description"]):
+        if request_data_valid(data, ["name", "description"]):
             try:
                 print(data)
                 db.execute(
                     "INSERT INTO gym_templates (name, description) values (?, ?)",
-                    (data["title"], data["description"]),
+                    (data["name"], data["description"]),
                 )
                 db.commit()
 
@@ -129,5 +129,14 @@ def create_app(test_config=None):
 
         db.close()
         return make_response("Success!", 200)
+
+    @app.route("/gym/get-templates")
+    def get_templates():
+        db = get_db()
+        templates = db.execute("SELECT * FROM gym_templates").fetchall()
+        templates = [dict(row) for row in templates]
+        templates = json.dumps(templates)
+        print("Sending data")
+        return jsonify(templates)
 
     return app
